@@ -101,7 +101,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              10 minutes read
+              7 minutes read
             </span>
           </div>
           <!-- <div class="categories">
@@ -146,13 +146,14 @@
           <h5>filter()</h5>
           <p>filter(conditions) is used to get the list based on conditions. </p>
           <p>Here below is example of getting list of objects that salary is greater than 100000</p>
-          <p><b>list.stream().filter(e -> e.getSalary()>100000).forEach(System.out::println);</b></p>
+          <p><b>list.stream().filter(e -> e.getSalary()>100000)</br>
+            .forEach(System.out::println);</b></p>
           <h5>map()</h5>
           <p>Stream map(Function mapper) returns a stream consisting of the results of applying the given function to the elements of this stream.</p>
           <p>Stream map(Function mapper) is an intermediate operation. These operations are always lazy. Intermediate operations are invoked on a Stream instance and after they finish their processing, they give a Stream instance as output.</p>
           <p>Here below example, the employee salary has been changed based on employee id using map.</p>
-           <p><b>  list.stream().filter(i->i.getId()==1).map(e -> {
-            e.setSalary(500000);
+           <p><b>  list.stream().filter(i->i.getId()==1)</br>
+             .map(e -> { e.setSalary(500000);
             return e; 
           }).forEach(System.out::println);</b></p>
           <p>here getid() is an employee object's id ,So it will update the salary of an employee if the employee id is 1.</p>
@@ -171,7 +172,8 @@
              <h5>floatMap()</h5>
              <p>Stream flatMap(Function mapper) returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.</p>
              <p>Stream flatMap(Function mapper) is an intermediate operation. These operations are always lazy. Intermediate operations are invoked on a Stream instance and after they finish their processing, they give a Stream instance as output.</p>
-             <p>Here is the example for floatMap : <b>    list.stream().flatMap(num -> Stream.of(num.getId()==1)).forEach(System.out::println);</b></p></br>
+             <p>Here is the example for floatMap : <b>    list.stream().flatMap(num -> Stream.of(num.getId()==1))</br>
+               .forEach(System.out::println);</b></p></br>
              <p> These are all the common and frequently used stream functionalities of java 8.</p>
              <p>Happy Learning :)</p>
       </div>
