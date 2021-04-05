@@ -11,7 +11,7 @@
 
     <base href="https://iammadhankumar.github.io/tech/">
     <title>
-  HTTP to HTTPS using Cloudfare and some hacks · Madhan Kumar
+      A Guide to Java Streams in Java 8: In-Depth· Madhan Kumar
 </title>
 
     <link rel="canonical" href="https://iammadhankumar.github.io/tech/posts/http-to-https/">
@@ -89,7 +89,7 @@
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">HTTP to HTTPS using Cloudfare and some hacks</h1>
+          <h1 class="title">A Guide to Java Streams in Java 8: In-Depth</h1>
         </div>
         <div class="post-meta">
           <div class="date">
@@ -101,7 +101,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              3 minutes read
+              10 minutes read
             </span>
           </div>
           <!-- <div class="categories">
@@ -116,20 +116,64 @@
       </header>
 
       <div>
-        <p>It was in December 2018 that I realised that my previous domain <code>sangeetmishra.me</code> had expired and some chinese guy had bought it. (Why !!??). Having all the time in hand, I set out in search of buying and recofiguring a new domain. Finally I zeroed in on sangeetmishra.in. Honestly I liked <code>.me</code> more, but okay, I could settle for a <code>.in</code>. So I went on and bought a license for that domain for three years from bigrock.in. I can&rsquo;t find the exact article that I followed, but this is very close that : <a href="https://medium.com/swlh/how-to-host-your-website-on-github-pages-for-free-3302b0fe8956">https://medium.com/swlh/how-to-host-your-website-on-github-pages-for-free-3302b0fe8956</a>.</p>
-<p>Then I realised that although sangeet259.github.io was redirecting to sangeetmishra.in. The CSS is all messed up. Apparently there was a mixed type respinse issue, which means that the site is being loaded on http but, the css and some other resources were being delivered via http. I also setup the a Cloudare SSL free of cost for the website. But all in vain! I left the site at <code>sangeet259.github.io</code> without using the newly bought domain for almost 1.5 years. This was untill March 2020 end, that I had a lot of time in my hand and wanted to finally fix the issue.</p>
-<p>I contacted <a href="https://rava-dosa.github.io/">Apoorva</a> regarding the issue and after looking at the console he told me to remove the &ldquo;crossorigin&rdquo; attribute from the css stylesheet link from everywhere. I did that, and in addition to that I also removed the &ldquo;integrity&rdquo; attribute from everywhere. (I realised without the crossorigin attribute, the integrity attribute throws error).
-Voila! The CSS on my site was loading properly, but wait a second, it was being all loaded via <code>http</code>. And that subtle &ldquo;Not Secure&rdquo; tag that Chrome shows doesn&rsquo;t make it look nice at all. I left the issue as it is for the time being and came back after a week.
-I realised there is a &ldquo;Enforce HTTPS&rdquo; option that GitHub pages gives you in your repo settings, but for some reason, in my case it was displaying that there is some issue with your hosting and HTTPS can&rsquo;t be enforced. I was puzzled, rechecked the A Records and IPs in BigRock.in dashboard. It was all right and running.
-I then searched for all <code>http://</code> in my HTML codebase and replaced them with <code>https://</code> . This too didn&rsquo;t work.</p>
-<p>I was still getting the same error
-<img src="https://i.imgur.com/Jl2yHtD.png" alt="img">.</p>
-<p>So what I noticed was that all the <a href="https://sangeet259.github.io">https://sangeet259.github.io</a> in my source HTML was being replaced by or being redirected to <a href="http://sangeetmishra.in/">http://sangeetmishra.in/</a>. I couldn&rsquo;t and still haven&rsquo;t been able to understand why it was translating a https url to one with http. But what I did was replace all the <code>https://sangeet259.github.io</code> by <code>https://sangeetmishra.in/</code> (notice HTTPS). So what I did was skip that stupid conversion. So now my site was loading the resources at <code>https://</code>, nice ?, not yet.</p>
-<p>What was still an issue was the the sangeet529.github.io would redirect to <code>http://sangeetmishra.in</code>, although <code>https://</code> was working. I went to my Cloudfare dashboard and set the redirects as follows :
-<img src="https://i.imgur.com/jSa6dwU.png" alt="img"></p>
-<p><img src="https://i.imgur.com/ADcKOsW.png" alt="img">
-Now it is all up and running ! 🏃 🎉</p>
+        <h3>Overview</h3>
+        <p>In this article,we are going to see one of the functionality of java 8 called Stream and major features of stream. It'll contains what are streams and showcase how it will be used and what are all the scenarios we need to use.</p>
+        <h3>Stream Package</h3>
+        <ul>
+           <li>This Class <b>java.util.stream</b> supports all the operations of the stream in java 8.</li>
+           <li>The key abstraction introduced in this package is stream. The classes Stream, IntStream, LongStream, and DoubleStream are streams over objects and the primitive int, long and double types.</li>
+       </ul>
+       <h3>Java Stream Creation</h3>
+       <p>	Shall we take an String array and convert it to stream.</br> Ex: String[] str= {"one","two"}; </p> 
+        <ul>
+       <li> The stream conversion of above array is <b>java.util.stream.Stream.of(str) </b></li>
+        <li> We can also create stream using list : <b>List<String> list=Arrays.asList(str).Stream()</b></li>
+          </ul>
+          <h3>Stream Operation</h3>
+          <h5>forEach()</h5>
+          <p>forEach() is simplest and most common operation; it loops over the stream elements, calling the supplied function on each element.</p>
+          
+            <p>* We can consider below employee class with its attributes.</p>
+            <p><b>Example :</b></p>
+              List<label><</label><lable>Employee</lable><lable>></lable><lable>&nbsp;list=ArrayList<>()</lable>
+            
+              <p>list.add(new Employee(1, "Jeff Bezos", 100000.0));</p>
+              <p>list.add(new Employee(2, "Bill Gates", 200000.0)); </p>
+              <p>list.add(new Employee(3, "Mark Zuckerberg", 300000.0));</p>
+          The above class Employee contains its attributes like employeeid,employee name and salary.
+          <p>* Here below like this, we can use forEach functionality to get the above list of objects.</p>
+          <p><b>	list.stream().forEach(System.out::println);</b> </p>
+          <h5>filter()</h5>
+          <p>filter(conditions) is used to get the list based on conditions. </p>
+          <p>Here below is example of getting list of objects that salary is greater than 100000</p>
+          <p><b>list.stream().filter(e -> e.getSalary()>100000).forEach(System.out::println);</b></p>
+          <h5>map()</h5>
+          <p>Stream map(Function mapper) returns a stream consisting of the results of applying the given function to the elements of this stream.</p>
+          <p>Stream map(Function mapper) is an intermediate operation. These operations are always lazy. Intermediate operations are invoked on a Stream instance and after they finish their processing, they give a Stream instance as output.</p>
+          <p>Here below example, the employee salary has been changed based on employee id using map.</p>
+           <p><b>  list.stream().filter(i->i.getId()==1).map(e -> {
+            e.setSalary(500000);
+            return e; 
+          }).forEach(System.out::println);</b></p>
+          <p>here getid() is an employee object's id ,So it will update the salary of an employee if the employee id is 1.</p>
+          <h5>collect()</h5>
+          <p>Stream.collect() is one of the Java 8's Stream API‘s terminal methods. It allows us to perform mutable fold operations (repackaging elements to some data structures and applying some additional logic, concatenating them, etc.) on data elements held in a Stream instance.</p>
+          <p>All predefined implementations can be found in the Collectors class. It's a common practice to use the following static import with them to leverage increased readability:
 
+            <b>import static java.util.stream.Collectors.*;</b></p>
+
+            <p>Here is the example for collect in stream </br>
+             <b>List<label><</label>Employee<lable>></lable> collectList=list.stream().collect(toList());</b></p>
+             <h5>findFirst()</h5>
+             <p>findFirst() returns an Optional for the first entry in the stream; the Optional can, of course, be empty.</p>
+             <p>Here is example for find first : <b>list.stream().findFirst();</b></p>
+
+             <h5>floatMap()</h5>
+             <p>Stream flatMap(Function mapper) returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.</p>
+             <p>Stream flatMap(Function mapper) is an intermediate operation. These operations are always lazy. Intermediate operations are invoked on a Stream instance and after they finish their processing, they give a Stream instance as output.</p>
+             <p>Here is the example for floatMap : <b>    list.stream().flatMap(num -> Stream.of(num.getId()==1)).forEach(System.out::println);</b></p></br>
+             <p> These are all the common and frequently used stream functionalities of java 8.</p>
+             <p>Happy Learning :)</p>
       </div>
 
       <!-- <footer>
